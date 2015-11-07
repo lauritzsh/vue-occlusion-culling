@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Occlusion culling with Vue.js</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+      body {
+        padding: 20px;
+      }
+
+      .table-container {
+        position: relative;
+        height: 500px;
+        overflow-y: scroll;
+        border: 1px solid #ddd;
+        border-top: 0;
+      }
+
+      .table {
+        table-layout: fixed;
+        position: relative;
+        margin-bottom: 0;
+      }
+
+      tr:first-of-type td {
+        border-top: 1px solid rgba(0, 0, 0, 0) !important;
+      }
+
+      .table-striped-reversed > tbody > tr:nth-of-type(even) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <!-- Only display when Vue is loaded and ready -->
+      <!-- This way we don't display our template code to visitors -->
+      <div class="text-center" :style="{ display: 'none' }">
+        <h1>Loading...</h1>
+      </div>
+      <div style="display: none;" :style="{ display: 'block' }">
+        <div class="form-group">
+          <input type="text" placeholder="Filter name..." v-model="search">
+          <span>{{ people.length }} matches</span>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="table-container" @scroll="scroll">
+          <div :style="{ height: tableHeight, position: 'relative', top: offset }">
+            <table class="table" :class="start % 2 == 0 ? 'table-striped' : 'table-striped-reversed'" :style="{ position: 'relative', top: divOffset }">
+              <tbody>
+                <tr v-for="person in people.slice(start, end)" track-by="$index">
+                  <td>{{ person.name }}</td>
+                  <td>{{ person.age }}</td>
+                  <td>{{ person.country }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="data">Random data genereated by <a href="https://www.mockaroo.com/">Mockaroo</a>.</div>
+      </div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
