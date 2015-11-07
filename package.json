@@ -1,0 +1,17 @@
+{
+  "name": "vue-occlusion-culling",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Occlusion culling using Vue",
+  "main": "app.js",
+  "scripts": {
+    "watch": "watchify src/app.js -o src/bundle.js"
+  },
+  "author": "Lauritz Hilsøe <mail@lauritz.me>",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "vue": "^1.0.7",
+    "watchify": "^3.6.0"
+  }
+}
