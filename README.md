@@ -14,6 +14,9 @@ thousands of elements if we are only going to display, say, ten at a time anyway
 
 I would be interested in a better word for this when it's not used for 3D graphics.
 
+## Demo
+There is a demo available [here](http://lauritzsh.github.io/vue-occlusion-culling/).
+
 ## TODO
 
   * Smoother scrolling in Safari
